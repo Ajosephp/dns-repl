@@ -1,0 +1,20 @@
+node_modules/
+
+# Environment files
+.env
+.env.*
+
+# TypeScript output
+dist/
+build/
+out/
+
+# TypeScript cache
+*.tsbuildinfo
+
+# VSCode settings
+.vscode/
+
+# OS-generated files
+.DS_Store
+Thumbs.db
