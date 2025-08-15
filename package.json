@@ -2,11 +2,12 @@
   "name": "dns-repl",
   "version": "1.0.0",
   "type": "module",
-  "main": "index.js",
+  "main": "dist/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
-    "start": "node dist/app.js"
+    "start": "npm run build && node dist/app.js",
+    "dev": "tsc && node dist/app.js"
   },
   "keywords": [],
   "author": "",
