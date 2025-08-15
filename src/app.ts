@@ -1,32 +1,19 @@
-import dns from 'node:dns';
+import { promises as dns } from 'node:dns';
 
-
-function main() {
+async function main() {
     console.log("Welcome - DNS Checker\n");
 
+    const domain = 'example.com';
 
+    const { address, family } = await dns.lookup(domain);
+    console.log('System Resolvers:');
+    console.log(`address: ${address}, family: IPv${family}`);
 
-    dns.lookup('example.com', (err: NodeJS.ErrnoException | null, address: string, family: number) => {
-        if (err) throw err;
+    const aRecords = await dns.resolve4(domain);
+    console.log('A records:', aRecords);
 
-        console.log('System Resolvers:');
-        console.log('address: %j family: IPv%s', address, family);
-    });
-
-    dns.resolve4('example.com', (err: NodeJS.ErrnoException | null, addresses: string[]) => {
-        if (err) {
-            console.error('Error resolving A records:', err);
-        }
-        console.log('A records:', addresses);
-    });
-
-    dns.resolve6('example.com', (err: NodeJS.ErrnoException | null, addresses: string[]) => {
-        if (err) {
-            console.error('Error resolving AAAA records:', err);
-        }
-        console.log('AAAA records:', addresses);
-    });
+    const aaaaRecords = await dns.resolve6(domain);
+    console.log('AAAA records:', aaaaRecords);
 }
 
-main();
-
+main().catch(console.error);

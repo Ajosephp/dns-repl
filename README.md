@@ -7,3 +7,6 @@
   - Clean Tabular format
  
 More to come..
+
+# Run Command
+- `npm start`
